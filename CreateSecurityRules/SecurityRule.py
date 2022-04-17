@@ -63,10 +63,17 @@ while True:
         dst_zone = str(input("dst_zone : ")).strip("")
         dst_ip = str(input("dst_ip : ")).strip("")
         app = str(input("app : ")).strip("")
-        service = str(input("service : ")).strip("")
-        action = str(input("action : ")).strip("")
-        rule = Rules(fw_ip, fw_user, fw_passwd, rule, src_zone, src_ip, dst_zone, dst_ip, app, service, action)
-        rule.Create_Object()
+        a = input("Do you want to leave service as a aplication-default(y/n): ")
+        if a.lower() == "y":
+            action = str(input("action : ")).strip("")
+            rule = Rules(fw_ip, fw_user, fw_passwd, rule, src_zone, src_ip, dst_zone, dst_ip, app, action=action)
+            rule.Create_Object()
+        else:
+            service = str(input("service : ")).strip("")
+            action = str(input("action : ")).strip("")
+            rule = Rules(fw_ip, fw_user, fw_passwd, rule, src_zone, src_ip, dst_zone, dst_ip, app, service, action)
+            rule.Create_Object()
+
         q = input("Do you want to continue (y/n) :   ")
         if q.lower() == "y":
             continue
